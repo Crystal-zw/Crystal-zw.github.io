@@ -1,56 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title></title>
-    <url>/2023/04/26/SSM/</url>
-    <content><![CDATA[<h1 id="SSM面试题"><a href="#SSM面试题" class="headerlink" title="SSM面试题"></a>SSM面试题</h1><h3 id="Spring-Boot、Spring-MVC-和Spring的区别？"><a href="#Spring-Boot、Spring-MVC-和Spring的区别？" class="headerlink" title="Spring Boot、Spring MVC 和Spring的区别？"></a>Spring Boot、Spring MVC 和Spring的区别？</h3><p>spring 是一个IOC容器，用来管理Bean，使用依赖注入实现控制反转，可以很方便的整合各种框架，提供了AOP机制，弥补了oop代码重复问题，比如日志和异常。</p>
-<p>Spring MVC是spring对web框架的一个解决方案，</p>
-<p>springboot是spring提供的一个快速开发工具包，更方便、快速开发spring+springMVC应用，简化了配置（约定大于配置）</p>
-<h3 id="Spring事务的实现方式和实现原理？"><a href="#Spring事务的实现方式和实现原理？" class="headerlink" title="Spring事务的实现方式和实现原理？"></a>Spring事务的实现方式和实现原理？</h3><p>两种，一种是编程式，一种是申明式</p>
-<ul>
-<li>编程式事务管理使用TransactionTemplate。</li>
-<li>声明式事务管理建立在AOP之上的。其本质是通过AOP功能，对方法前后进行拦截，将事务处理的功能编织到拦截的方法中，也就是在目标方法开始之前启动一个事务，在执行完目标方法之后根据执行情况提交或者回滚事务。 事务的传播机制？</li>
-</ul>
-<h3 id="事务的传播机制？"><a href="#事务的传播机制？" class="headerlink" title="事务的传播机制？"></a>事务的传播机制？</h3><ul>
-<li>PROPAGATION_REQUIRED    支持当前事务，假设当前没有事务。就新建一个事务</li>
-<li>PROPAGATION_SUPPORTS    支持当前事务，假设当前没有事务，就以非事务方式运行</li>
-<li>PROPAGATION_MANDATORY    支持当前事务，假设当前没有事务，就抛出异常</li>
-<li>PROPAGATION_REQUIRES_NEW    新建事务，假设当前存在事务。把当前事务挂起</li>
-<li>PROPAGATION_NOT_SUPPORTED    以非事务方式运行操作。假设当前存在事务，就把当前事务挂起</li>
-<li>PROPAGATION_NEVER    以非事务方式运行，假设当前存在事务，则抛出异常</li>
-<li>PROPAGATION_NESTED    如果当前存在事务，则在嵌套事务内执行。如果当前没有事务，则执行与类似的操作。</li>
-</ul>
-<h3 id="Spring中单例Bean是线程安全的吗？"><a href="#Spring中单例Bean是线程安全的吗？" class="headerlink" title="Spring中单例Bean是线程安全的吗？"></a>Spring中单例Bean是线程安全的吗？</h3><p>有状态对象(Stateful Bean) ：就是有实例变量的对象，可以保存数据，是非线程安全的。（count）</p>
-<p>无状态对象(Stateless Bean)：就是没有实例变量的对象，不能保存数据，是不变类，是线程安全的。（service，dao）</p>
-<h3 id="SpringMVC的流程？"><a href="#SpringMVC的流程？" class="headerlink" title="SpringMVC的流程？"></a>SpringMVC的流程？</h3><p>（1）用户发送请求至前端控制器DispatcherServlet；<br>（2）DispatcherServlet收到请求后，调用HandlerMapping处理器映射器，请求获取Handler；<br>（3）处理器映射器根据请求url找到具体的处理器Handler，生成处理器对象及处理器拦截器(如果有则生成)，一并返回给DispatcherServlet；<br>（4）DispatcherServlet 调用 HandlerAdapter处理器适配器，请求执行Handler；<br>（5）HandlerAdapter 经过适配调用 具体处理器进行处理业务逻辑；<br>（6）Handler执行完成返回ModelAndView；<br>（7）HandlerAdapter将Handler执行结果ModelAndView返回给DispatcherServlet；<br>（8）DispatcherServlet将ModelAndView传给ViewResolver视图解析器进行解析；<br>（9）ViewResolver解析后返回具体View；<br>（10）DispatcherServlet对View进行渲染视图（即将模型数据填充至视图中）<br>（11）DispatcherServlet响应用户。</p>
-<h3 id="SpringMVC怎么样设定重定向和转发的？"><a href="#SpringMVC怎么样设定重定向和转发的？" class="headerlink" title="SpringMVC怎么样设定重定向和转发的？"></a>SpringMVC怎么样设定重定向和转发的？</h3><p>（1）转发：在返回值前面加”forward:”，譬如”forward:user.do?name=method4”</p>
-<p>（2）重定向：在返回值前面加”redirect:”，譬如”redirect:<a href="http://www.baidu.com&quot;/">http://www.baidu.com&quot;</a></p>
-<h3 id="SpringMVC常用的注解有哪些？"><a href="#SpringMVC常用的注解有哪些？" class="headerlink" title="SpringMVC常用的注解有哪些？"></a>SpringMVC常用的注解有哪些？</h3><p>@RequestMapping：用于处理请求 url 映射的注解，可用于类或方法上。用于类上，则表示类中的所有响应请求的方法都是以该地址作为父路径。</p>
-<p>@RequestBody：注解实现接收http请求的json数据，将json转换为java对象。</p>
-<p>@ResponseBody：注解实现将conreoller方法返回对象转化为json对象响应给客户</p>
-<h3 id="SpringMvc怎么和AJAX相互调用的？"><a href="#SpringMvc怎么和AJAX相互调用的？" class="headerlink" title="SpringMvc怎么和AJAX相互调用的？"></a>SpringMvc怎么和AJAX相互调用的？</h3><p>（1）加入Jackson.jar</p>
-<p>（2）在配置文件中配置json的映射</p>
-<p>（3）在接受Ajax方法里面可以直接返回Object、List等，但方法前面要加上@ResponseBody注解。</p>
-<h3 id="SpringMvc中函数的返回值是什么？"><a href="#SpringMvc中函数的返回值是什么？" class="headerlink" title="SpringMvc中函数的返回值是什么？"></a>SpringMvc中函数的返回值是什么？</h3><p>返回值可以有很多类型，有String，ModelAndView。ModelAndView类把视图和数据都合并的一起的，但一般用String比较好。</p>
-<h3 id="SpringMvc用什么对象从后台向前台传递数据的？"><a href="#SpringMvc用什么对象从后台向前台传递数据的？" class="headerlink" title="SpringMvc用什么对象从后台向前台传递数据的？"></a>SpringMvc用什么对象从后台向前台传递数据的？</h3><p>通过ModelMap对象，可以在这个对象里面调用put方法，把对象加到里面，前端就可以通过el表达式拿到。</p>
-<h3 id="怎么样把ModelMap里面的数据放入Session里面？"><a href="#怎么样把ModelMap里面的数据放入Session里面？" class="headerlink" title="怎么样把ModelMap里面的数据放入Session里面？"></a>怎么样把ModelMap里面的数据放入Session里面？</h3><p>可以在类上面加上@SessionAttributes注解，里面包含的字符串就是要放入session里面的key。</p>
-<h3 id="Mybaits的优缺点"><a href="#Mybaits的优缺点" class="headerlink" title="Mybaits的优缺点"></a>Mybaits的优缺点</h3><p>（1）优点：</p>
-<p>① 与JDBC相比，减少了50%以上的代码量，消除了JDBC大量冗余的代码，不需要手动开关连接；</p>
-<p>② 基于SQL语句编程，相当灵活，不会对应用程序或者数据库的现有设计造成任何影响，SQL写在XML里，解除sql与程序代码的耦合，便于统一管理；提供XML标签，支持编写动态SQL语句，并可重用。</p>
-<p>③ 很好的与各种数据库兼容（因为MyBatis使用JDBC来连接数据库，所以只要JDBC支持的数据库MyBatis都支持）。</p>
-<p>④ 能够与Spring很好的集成；</p>
-<p>⑤ 提供映射标签，支持对象与数据库的ORM字段关系映射；提供对象关系映射标签，支持对象关系组件维护。</p>
-<p>（2）缺点：</p>
-<p>① SQL语句的编写工作量较大，尤其当字段多、关联表多时，对开发人员编写SQL语句的功底有一定要求。</p>
-<p>② SQL语句依赖于数据库，导致数据库移植性差，不能随意更换数据库。</p>
-<h3 id="和-的区别是什么？"><a href="#和-的区别是什么？" class="headerlink" title="#{}和${}的区别是什么？"></a>#{}和${}的区别是什么？</h3><p>${}是字符串替换，#{}是预处理；使用#{}可以有效的防止SQL注入，提高系统安全性。</p>
-<p>Mybatis在处理${}时，就是把${}直接替换成变量的值。而Mybatis在处理#{}时，会对sql语句进行预处理，将sql中的#{}替换为?号，调用PreparedStatement的set方法来赋值</p>
-<h3 id="使用MyBatis的mapper接口调用时有哪些要求？"><a href="#使用MyBatis的mapper接口调用时有哪些要求？" class="headerlink" title="使用MyBatis的mapper接口调用时有哪些要求？"></a>使用MyBatis的mapper接口调用时有哪些要求？</h3><p>Mapper接口方法名和mapper.xml中定义的每个sql的id相同；<br> Mapper接口方法的输入参数类型和mapper.xml中定义的每个sql 的parameterType的类型相同；<br> Mapper接口方法的输出参数类型和mapper.xml中定义的每个sql的resultType的类型相同；<br> Mapper.xml文件中的namespace即是mapper接口的类路径。</p>
-]]></content>
-  </entry>
-  <entry>
     <title>vue学习</title>
     <url>/2023/04/25/vue%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<h1 id="study，你好！！"><a href="#study，你好！！" class="headerlink" title="study，你好！！"></a>study，你好！！</h1>]]></content>
+  </entry>
+  <entry>
+    <title>ssm面试题</title>
+    <url>/2023/04/27/ssm%E9%9D%A2%E8%AF%95%E9%A2%98/</url>
+    <content><![CDATA[]]></content>
   </entry>
 </search>
